@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>f2f3a4d9-8f67-4733-953f-5bd77d839641</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AspNet.DataProtection.Aws.S3" Version="3.3.0" />
+		<PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.7.301" />
+		<PackageReference Include="AWSSDK.SQS" Version="3.7" />
+		<PackageReference Include="AWSSDK.SimpleNotificationService" Version="3.7.501" />
+		<PackageReference Include="AWSSDK.SimpleSystemsManagement" Version="3.7.304.5" />
+		<PackageReference Include="prometheus-net.AspNetCore" Version="8.2.1" />
+		<PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\AgtcSrvManagement.Application\AgtcSrvManagement.Application.csproj" />
+	  <ProjectReference Include="..\AgtcSrvManagement.Infrastructure\AgtcSrvManagement.Infrastructure.csproj" />
+	</ItemGroup>
+
+</Project>
