@@ -7,7 +7,7 @@ ARG NEW_RELIC_AGENT_VERSION=10.26.0
 
 RUN curl -L https://download.newrelic.com/dot_net_agent/previous_releases/${NEW_RELIC_AGENT_VERSION}/newrelic-dotnet-agent_${NEW_RELIC_AGENT_VERSION}_amd64.tar.gz | tar -C . -xz
 
-COPY agtc-srv-auth.sln .
+COPY agtc-srv-management.sln .
 COPY AgtcSrvManagement.API/*.csproj ./AgtcSrvManagement.API/
 COPY AgtcSrvManagement.Application/*.csproj ./AgtcSrvManagement.Application/
 COPY AgtcSrvManagement.Domain/*.csproj ./AgtcSrvManagement.Domain/
