@@ -53,7 +53,7 @@ jobs:
 
       - name: Generate Sonar Coverage Report
         run: |
-          reportgenerator -reports:**/coverage.cobertura.xml -targetdir:coverage-report -reporttypes:SonarQube
+          reportgenerator -reports:"**/coverage.cobertura.xml" -targetdir:coverage-report -reporttypes:SonarQube
 
       - name: End SonarCloud Analysis
         run: dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"
