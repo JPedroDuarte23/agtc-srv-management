@@ -51,7 +51,7 @@ jobs:
       - name: Run Tests with Coverage
         run: dotnet test --collect:"XPlat Code Coverage"
 
-      - name: Debug: Find Coverage Report
+      - name: Debug Find Coverage Report
         run: find . -name "coverage.cobertura.xml"
 
 
