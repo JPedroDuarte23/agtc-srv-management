@@ -63,7 +63,7 @@ public class PropertyService : IPropertyService
             Id = Guid.NewGuid(),
             Name = request.Name,
             Location = request.Location,
-            TotalArea = request.TotalArea,
+            TotalArea = 0,
             OwnerId = farmerId,
             Fields = new List<Field>()
         };
@@ -103,7 +103,7 @@ public class PropertyService : IPropertyService
             };
 
             property.Fields.Add(field);
-
+            property.TotalArea += field.Area;
 
             try
             {

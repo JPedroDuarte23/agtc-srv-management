@@ -14,7 +14,7 @@ public class FarmerRepository : IFarmerRepository
     private readonly IMongoCollection<Farmer> _collection;
     public FarmerRepository(IMongoDatabase database) 
     {
-        _collection = database.GetCollection<Farmer>("farmer");
+        _collection = database.GetCollection<Farmer>("farmers");
     }
     public async Task<Farmer> GetFarmerByIdAsync(Guid farmerId)
     {
