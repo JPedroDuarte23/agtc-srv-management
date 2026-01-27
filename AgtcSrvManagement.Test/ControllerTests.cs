@@ -179,8 +179,7 @@ namespace AgtcSrvManagement.Test
             var request = new CreatePropertyRequest
             {
                 Name = "New Property",
-                Location = "New Location",
-                TotalArea = 150
+                Location = "New Location"
             };
 
             _propertyServiceMock.Setup(x => x.CreatePropertyAsync(request, farmerId)).Returns(Task.CompletedTask);
@@ -203,8 +202,7 @@ namespace AgtcSrvManagement.Test
             var request = new CreatePropertyRequest
             {
                 Name = "New Property",
-                Location = "New Location",
-                TotalArea = 150
+                Location = "New Location"
             };
 
             _propertyServiceMock.Setup(x => x.CreatePropertyAsync(request, farmerId))
@@ -224,8 +222,7 @@ namespace AgtcSrvManagement.Test
             var request = new CreatePropertyRequest
             {
                 Name = "New Property",
-                Location = "New Location",
-                TotalArea = 150
+                Location = "New Location"
             };
 
             _propertyServiceMock.Setup(x => x.CreatePropertyAsync(request, farmerId))

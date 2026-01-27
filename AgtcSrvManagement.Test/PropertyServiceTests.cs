@@ -170,7 +170,7 @@ namespace AgtcSrvManagement.Test
             // Arrange
             var farmerId = Guid.NewGuid();
             var farmer = new Farmer { Id = farmerId, Name = "Test Farmer", Email = "test@test.com", PasswordHash = "hash" };
-            var request = new CreatePropertyRequest { Name = "New Property", Location = "New Location", TotalArea = 150 };
+            var request = new CreatePropertyRequest { Name = "New Property", Location = "New Location" };
 
             _farmerRepositoryMock.Setup(x => x.GetFarmerByIdAsync(farmerId)).ReturnsAsync(farmer);
             _propertyRepositoryMock.Setup(x => x.CreateProperty(It.IsAny<Property>())).Returns(Task.CompletedTask);
@@ -193,7 +193,7 @@ namespace AgtcSrvManagement.Test
         {
             // Arrange
             var farmerId = Guid.NewGuid();
-            var request = new CreatePropertyRequest { Name = "New Property", Location = "New Location", TotalArea = 150 };
+            var request = new CreatePropertyRequest { Name = "New Property", Location = "New Location" };
 
             _farmerRepositoryMock.Setup(x => x.GetFarmerByIdAsync(farmerId)).ReturnsAsync((Farmer)null);
 
@@ -207,7 +207,7 @@ namespace AgtcSrvManagement.Test
             // Arrange
             var farmerId = Guid.NewGuid();
             var farmer = new Farmer { Id = farmerId, Name = "Test Farmer", Email = "test@test.com", PasswordHash = "hash" };
-            var request = new CreatePropertyRequest { Name = "New Property", Location = "New Location", TotalArea = 150 };
+            var request = new CreatePropertyRequest { Name = "New Property", Location = "New Location" };
 
             _farmerRepositoryMock.Setup(x => x.GetFarmerByIdAsync(farmerId)).ReturnsAsync(farmer);
             _propertyRepositoryMock.Setup(x => x.CreateProperty(It.IsAny<Property>())).ThrowsAsync(new Exception("DB Error"));

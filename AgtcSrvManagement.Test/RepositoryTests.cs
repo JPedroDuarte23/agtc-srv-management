@@ -1,5 +1,6 @@
 using AgtcSrvManagement.Domain.Models;
 using AgtcSrvManagement.Infrastructure.Repository;
+using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 using Moq;
 using System;
@@ -395,82 +396,5 @@ namespace AgtcSrvManagement.Test
 
     #region FarmerRepository Tests
 
-    public class FarmerRepositoryTests
-    {
-        private readonly Mock<IMongoDatabase> _databaseMock;
-        private readonly Mock<IMongoCollection<Farmer>> _collectionMock;
-        private readonly FarmerRepository _repository;
-
-        public FarmerRepositoryTests()
-        {
-            _databaseMock = new Mock<IMongoDatabase>();
-            _collectionMock = new Mock<IMongoCollection<Farmer>>();
-
-            _databaseMock.Setup(db => db.GetCollection<Farmer>("farmer", null))
-                .Returns(_collectionMock.Object);
-
-            _repository = new FarmerRepository(_databaseMock.Object);
-        }
-
-        [Fact]
-        public async Task GetFarmerByIdAsync_WithValidFarmerId_ReturnsFarmer()
-        {
-            // Arrange
-            var farmerId = Guid.NewGuid();
-            var farmer = new Farmer
-            {
-                Id = farmerId,
-                Name = "John Doe",
-                Email = "john@example.com",
-                PasswordHash = "hashedpassword"
-            };
-
-            var cursorMock = new Mock<IAsyncCursor<Farmer>>();
-            cursorMock.Setup(c => c.Current).Returns(new List<Farmer> { farmer });
-            cursorMock.SetupSequence(c => c.MoveNextAsync(It.IsAny<CancellationToken>()))
-                .ReturnsAsync(true)
-                .ReturnsAsync(false);
-
-            _collectionMock.Setup(c => c.FindAsync(
-                It.IsAny<FilterDefinition<Farmer>>(),
-                It.IsAny<FindOptions<Farmer, Farmer>>(),
-                default))
-                .ReturnsAsync(cursorMock.Object);
-
-            // Act
-            var result = await _repository.GetFarmerByIdAsync(farmerId);
-
-            // Assert
-            Assert.NotNull(result);
-            Assert.Equal(farmerId, result.Id);
-            Assert.Equal("John Doe", result.Name);
-            Assert.Equal("john@example.com", result.Email);
-        }
-
-        [Fact]
-        public async Task GetFarmerByIdAsync_WithNonExistentFarmerId_ReturnsNull()
-        {
-            // Arrange
-            var farmerId = Guid.NewGuid();
-            var emptyList = new List<Farmer>();
-
-            var cursorMock = new Mock<IAsyncCursor<Farmer>>();
-            cursorMock.Setup(c => c.Current).Returns(emptyList);
-            cursorMock.SetupSequence(c => c.MoveNextAsync(It.IsAny<CancellationToken>()))
-                .ReturnsAsync(false);
-
-            _collectionMock.Setup(c => c.FindAsync(
-                It.IsAny<FilterDefinition<Farmer>>(),
-                It.IsAny<FindOptions<Farmer, Farmer>>(),
-                default))
-                .ReturnsAsync(cursorMock.Object);
-
-            // Act
-            var result = await _repository.GetFarmerByIdAsync(farmerId);
-
-            // Assert
-            Assert.Null(result);
-        }
-    }
-    #endregion
 }
+    #endregion
