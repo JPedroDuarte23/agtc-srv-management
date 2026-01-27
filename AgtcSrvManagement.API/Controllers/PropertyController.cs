@@ -33,7 +33,7 @@ public class PropertyController : ControllerBase
     public async Task<IActionResult> GetPropertyAsync(Guid propertyId)
     {
         var farmerId = Guid.Parse(User.FindFirstValue(ClaimTypes.Name)!);
-        var property = await _service.GetPropertyAsync(farmerId, propertyId);
+        var property = await _service.GetPropertyAsync(propertyId, farmerId);
         return Ok(property);
     }
 

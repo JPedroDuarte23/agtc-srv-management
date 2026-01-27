@@ -122,7 +122,7 @@ namespace AgtcSrvManagement.Test
                 Fields = new List<FieldResponse>()
             };
 
-            _propertyServiceMock.Setup(x => x.GetPropertyAsync(farmerId, propertyId)).ReturnsAsync(property);
+            _propertyServiceMock.Setup(x => x.GetPropertyAsync(propertyId, farmerId)).ReturnsAsync(property);
 
             // Act
             var result = await _propertyController.GetPropertyAsync(propertyId);
@@ -143,7 +143,7 @@ namespace AgtcSrvManagement.Test
             var propertyId = Guid.NewGuid();
             SetupControllerContext(farmerId);
 
-            _propertyServiceMock.Setup(x => x.GetPropertyAsync(farmerId, propertyId))
+            _propertyServiceMock.Setup(x => x.GetPropertyAsync(propertyId, farmerId))
                 .ThrowsAsync(new NotFoundException("Property not found"));
 
             // Act & Assert
@@ -158,7 +158,7 @@ namespace AgtcSrvManagement.Test
             var propertyId = Guid.NewGuid();
             SetupControllerContext(farmerId);
 
-            _propertyServiceMock.Setup(x => x.GetPropertyAsync(farmerId, propertyId))
+            _propertyServiceMock.Setup(x => x.GetPropertyAsync(propertyId, farmerId))
                 .ThrowsAsync(new NotFoundException("Not Found"));
 
             // Act & Assert
